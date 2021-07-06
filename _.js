@@ -1,12 +1,14 @@
 const _ = {
   // Implement .clamp() method:
   // .clamp() method called using _.clamp()
+  // node test/clamp.js passed
   clamp (number, lower, upper) {
     const lowerClampedValue = Math.max(number, lower)
     let clampedValue = Math.min(lowerClampedValue, upper)
     return clampedValue
   },
-  // Ideate .inRange() method:
+  // ***********************************************************
+  // Ideate .inRange() method [my solution]:
   inRangeIdea (num, start, end) {
     let startRange
     let endRange
@@ -30,6 +32,7 @@ const _ = {
     }
   },
   // Implement .inRange() method [CodeCademy solution]:
+  // node test/in-range.js passed
   inRange (number, start, end) {
     if (end === undefined) {
       end = start
@@ -42,9 +45,21 @@ const _ = {
     }
     let isInRange = (number >= start && number < end)
     return isInRange
+  },
+  // ***********************************************************
+  // Ideate .words() [my solution]:
+  wordsIdea (inputString) {
+    return inputString.split(' ')
+  },
+  // Implement .words() [CodeCademy solution]:
+  // node test/words.js passed
+  words (string) {
+    const words = string.split(' ')
+    return words
   }
 }
 
+// ***********************************************************
 // Ideate .clamp():
 function clamp(num) {
   let clamped
@@ -66,7 +81,8 @@ console.log(_.clamp(-10, 1, 100))
 console.log(_.clamp(25, 1, 100))
 console.log(_.clamp(500, 1, 100))
 
-// console.log tests for inRange Ideate:
+// ***********************************************************
+// console.log tests for .inRange() Ideate:
 console.log("_.inRangeIdea(5, 10) should return true:")
 console.log(_.inRangeIdea(5,10))
 console.log("_.inRangeIdea(10, 5) should return false:")
@@ -78,6 +94,10 @@ console.log(_.inRangeIdea(30,5,20))
 console.log("_.inRangeIdea(1, 5, 20) should return false:")
 console.log(_.inRangeIdea(1,5,20))
 
+// ***********************************************************
+// console.log tests for .wordsIdea() Ideate:""
+console.log("Input string 'The quick brown fox jumps over the lazy dog', should return array of words:")
+console.log(_.wordsIdea('The quick brown fox jumps over the lazy dog'))
 
 // Do not write or modify code below this line.
 module.exports = _;
