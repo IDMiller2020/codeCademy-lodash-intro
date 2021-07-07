@@ -65,7 +65,6 @@ const _ = {
     paddedString = paddedString.padStart(frontPad).padEnd(length)
     return paddedString
   },
-  // ***********************************************************
   // Implement .pad() [CodeCademy solution]:
   // node test/pad.js passed
   pad (string, length) {
@@ -76,6 +75,17 @@ const _ = {
     const endPaddingLength = length - string.length - startPaddingLength
     const paddedString = ' '.repeat(startPaddingLength) + string + ' '.repeat(endPaddingLength)
     return paddedString
+  },
+  // ***********************************************************
+  // Ideate .has() [my solution]:
+  hasIdea (object, key) {
+    return (object[key] !== undefined)
+  },
+  // Implement .pad() [CodeCademy solution]:
+  // node test/has.js passed
+  has (object, key) {
+    const hasValue = (object[key] !== undefined)
+    return hasValue
   }
 }
 
@@ -115,14 +125,21 @@ console.log("_.inRangeIdea(1, 5, 20) should return false:")
 console.log(_.inRangeIdea(1,5,20))
 
 // ***********************************************************
-// console.log tests for .wordsIdea() Ideate:""
+// console.log tests for .wordsIdea() Ideate:
 console.log("Input string 'The quick brown fox jumps over the lazy dog', should return array of words:")
 console.log(_.wordsIdea('The quick brown fox jumps over the lazy dog'))
 
 // ***********************************************************
-// console.log tests for .padIdea Ideate:""
+// console.log tests for .padIdea Ideate:
 console.log("_.padIdea('scott', 10), should return '  scott   '")
 console.log(`test${_.padIdea('scott', 10)}test`)
+
+// ***********************************************************
+// console.log tests for _.hasIdea() Ideate:
+console.log("_hasIdea({name: 'scott'}, 'name'), should return true.")
+console.log(_.hasIdea({name: 'scott'}, 'name'))
+console.log("_hasIdea({name: 'scott'}, 'age'), should return false.")
+console.log(_.hasIdea({name: 'scott'}, 'age'))
 
 // Do not write or modify code below this line.
 module.exports = _;
