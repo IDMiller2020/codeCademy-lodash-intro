@@ -56,6 +56,26 @@ const _ = {
   words (string) {
     const words = string.split(' ')
     return words
+  },
+  // ***********************************************************
+  // Ideate .pad() [my solution]:
+  padIdea (inputString, length) {
+    const frontPad = inputString.length + Math.floor((length - inputString.length) / 2)
+    let paddedString = inputString
+    paddedString = paddedString.padStart(frontPad).padEnd(length)
+    return paddedString
+  },
+  // ***********************************************************
+  // Implement .pad() [CodeCademy solution]:
+  // node test/pad.js passed
+  pad (string, length) {
+    if (length <= string.length) {
+      return string
+    }
+    const startPaddingLength = Math.floor((length - string.length) / 2)
+    const endPaddingLength = length - string.length - startPaddingLength
+    const paddedString = ' '.repeat(startPaddingLength) + string + ' '.repeat(endPaddingLength)
+    return paddedString
   }
 }
 
@@ -98,6 +118,11 @@ console.log(_.inRangeIdea(1,5,20))
 // console.log tests for .wordsIdea() Ideate:""
 console.log("Input string 'The quick brown fox jumps over the lazy dog', should return array of words:")
 console.log(_.wordsIdea('The quick brown fox jumps over the lazy dog'))
+
+// ***********************************************************
+// console.log tests for .padIdea Ideate:""
+console.log("_.padIdea('scott', 10), should return '  scott   '")
+console.log(`test${_.padIdea('scott', 10)}test`)
 
 // Do not write or modify code below this line.
 module.exports = _;
