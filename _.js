@@ -81,11 +81,32 @@ const _ = {
   hasIdea (object, key) {
     return (object[key] !== undefined)
   },
-  // Implement .pad() [CodeCademy solution]:
+  // Implement .has() [CodeCademy solution]:
   // node test/has.js passed
   has (object, key) {
     const hasValue = (object[key] !== undefined)
     return hasValue
+  },
+  // ***********************************************************
+  // Ideate .invert() [my solution]:
+  invertIdea (object) {
+    for (const i in object) {
+      const key = i
+      const value = object[i]
+      object[value] = key
+      delete object[i]
+    }
+    return object
+  },
+  // Implement .invert() [CodeCademy solution]:
+  // node test/has.js passed
+  invert (object) {
+    let invertedObject = {}
+    for (const i in object) {
+      const originalValue = object[i]
+      invertedObject[originalValue] = i
+    }
+    return invertedObject
   }
 }
 
@@ -140,6 +161,20 @@ console.log("_hasIdea({name: 'scott'}, 'name'), should return true.")
 console.log(_.hasIdea({name: 'scott'}, 'name'))
 console.log("_hasIdea({name: 'scott'}, 'age'), should return false.")
 console.log(_.hasIdea({name: 'scott'}, 'age'))
+
+// ***********************************************************
+// tests for _.invertIdea() Ideate:
+console.log("Input object: {scott: 'name', grey: 'hair', hazel: 'eyes'}")
+console.log("keys and values should be swapped.")
+let testObject = {scott: 'name', grey: 'hair', hazel: 'eyes'}
+let invertedTestObject = _.invertIdea(testObject)
+console.log(`name: ${invertedTestObject.name}`)
+console.log(`hair: ${invertedTestObject.hair}`)
+console.log(`eyes: ${invertedTestObject.eyes}`)
+console.log('And, original properties should be deleted (undefined):')
+console.log(`scott: ${invertedTestObject.scott}`)
+console.log(`grey: ${invertedTestObject.grey}`)
+console.log(`hazel: ${invertedTestObject.hazel}`)
 
 // Do not write or modify code below this line.
 module.exports = _;
