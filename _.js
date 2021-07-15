@@ -1,3 +1,6 @@
+function test (value) {
+  return (value < 5000) 
+}
 const _ = {
   // Implement .clamp() method:
   // .clamp() method called using _.clamp()
@@ -99,7 +102,7 @@ const _ = {
     return object
   },
   // Implement .invert() [CodeCademy solution]:
-  // node test/has.js passed
+  // node test/invert.js passed
   invert (object) {
     let invertedObject = {}
     for (const i in object) {
@@ -107,6 +110,32 @@ const _ = {
       invertedObject[originalValue] = i
     }
     return invertedObject
+  },
+  // ***********************************************************
+  // Ideate .findKey() [my solution]:
+  // testFunction added outside of _ object (above)
+  findKeyIdea (object, testFunction) {
+    let returnValue = ''
+    for (const key in object) {
+      if (testFunction(object[key])) {
+        returnValue = key
+      } else {
+        returnValue = undefined
+      }
+    }
+    return returnValue
+  },
+  // Implement .findKey() [CodeCademy solution]:
+  // node test/findKey.js passed
+  findKey (object, predicate) {
+    for(const key in object) {
+      const value = object[key]
+      const predicateReturnValue = predicate(value)
+      if (predicateReturnValue) {
+        return key
+      }
+    }
+    return undefined
   }
 }
 
@@ -175,6 +204,13 @@ console.log('And, original properties should be deleted (undefined):')
 console.log(`scott: ${invertedTestObject.scott}`)
 console.log(`grey: ${invertedTestObject.grey}`)
 console.log(`hazel: ${invertedTestObject.hazel}`)
+
+// ***********************************************************
+// tests for _.findKeyIdea() Ideate:
+console.log('This call to _.findKeyIdea should return the key num4:')
+console.log(_.findKeyIdea({num1: 5000, num2: 6000, num3: 10000, num4: 4999}, test))
+console.log('This call to _.findKeyIdea should return undefined:')
+console.log(_.findKeyIdea({num1: 5005, num2: 10000}, test))
 
 // Do not write or modify code below this line.
 module.exports = _;
