@@ -126,7 +126,7 @@ const _ = {
     return returnValue
   },
   // Implement .findKey() [CodeCademy solution]:
-  // node test/findKey.js passed
+  // node test/find-Key.js passed
   findKey (object, predicate) {
     for(const key in object) {
       const value = object[key]
@@ -136,6 +136,23 @@ const _ = {
       }
     }
     return undefined
+  },
+  // ***********************************************************
+  // Ideate .drop() [my solution]:
+  dropIdea (arr, num = 1) {
+    for (let i = 0; i < num; i++) {
+      arr.shift()
+    }
+    return arr
+  },
+  // Implement .drop() [CodeCademy solution]:
+  // node test/drop.js passed
+  drop (array, n) {
+    if (!n) {
+      n = 1
+    }
+    const droppedArray = array.slice(n)
+    return droppedArray
   }
 }
 
@@ -211,6 +228,15 @@ console.log('This call to _.findKeyIdea should return the key num4:')
 console.log(_.findKeyIdea({num1: 5000, num2: 6000, num3: 10000, num4: 4999}, test))
 console.log('This call to _.findKeyIdea should return undefined:')
 console.log(_.findKeyIdea({num1: 5005, num2: 10000}, test))
+
+// ***********************************************************
+// tests for _.dropIdea() Ideate:
+console.log('This call to _.dropIdea should return [3, 4, 5]')
+console.log(_.dropIdea([1, 2, 3, 4, 5], 2))
+console.log('This call to _.dropIdea should return [2, 3, 4, 5]')
+console.log(_.dropIdea([1, 2, 3, 4, 5]))
+console.log('This call to _.dropIdea should return []')
+console.log(_.dropIdea([1, 2, 3, 4, 5], 5))
 
 // Do not write or modify code below this line.
 module.exports = _;
