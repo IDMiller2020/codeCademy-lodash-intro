@@ -177,6 +177,30 @@ const _ = {
     const dropNumber = array.findIndex(callBack)
     const droppedArray = this.drop(array, dropNumber)
     return droppedArray
+  },
+  // ***********************************************************
+  // Ideate .dropWhile() [my solution]:
+  chunkIdea (array, size = 1) {
+    let chunkArray = []
+    for (let i = 0; i < array.length; i += size) {
+      let end = i + size
+      let chunk = array.slice(i, end)
+      chunkArray.push(chunk)
+    }
+    return chunkArray
+  },
+  // Implement .chunk() [CodeCademy solution]:
+  // node test/chunk.js Passed
+  chunk (array, size) {
+    if (size === undefined) {
+      size = 1
+    }
+    let arrayChunks = []
+    for (let i = 0; i < array.length; i += size) {
+      let arrayChunk = array.slice(i, i + size)
+      arrayChunks.push(arrayChunk)
+    }
+    return arrayChunks
   }
 }
 
@@ -266,6 +290,13 @@ console.log(_.dropIdea([1, 2, 3, 4, 5], 5))
 // tests for _.dropIdea() Ideate:
 console.log('This call to _.dropWhileIdea should return [3, 4, 100]')
 console.log(_.dropWhileIdea([1, 2, 2, 3, 4, 100], predicate))
+
+// ***********************************************************
+// tests for _.chunkIdea() Ideate:
+console.log('_.chunkIdea was called with array = [0,1,2,3,4,5,6,7,8,9] and size = 2:')
+console.log(_.chunkIdea([0,1,2,3,4,5,6,7,8,9], 2))
+console.log('_.chunkIdea was called with array = [0,1,2,3,4,5,6,7,8,9] and size = 3:')
+console.log(_.chunkIdea([0,1,2,3,4,5,6,7,8,9], 3))
 
 // Do not write or modify code below this line.
 module.exports = _;
