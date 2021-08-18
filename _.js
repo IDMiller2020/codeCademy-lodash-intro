@@ -1,6 +1,9 @@
 function test (value) {
   return (value < 5000) 
 }
+function predicate(elem, ind, arr) {
+  return (!(elem === ind))
+}
 const _ = {
   // Implement .clamp() method:
   // .clamp() method called using _.clamp()
@@ -151,7 +154,28 @@ const _ = {
     if (!n) {
       n = 1
     }
-    const droppedArray = array.slice(n)
+    let droppedArray = array.slice(n)
+    return droppedArray
+  },
+  // ***********************************************************
+  // Ideate .dropWhile() [my solution]:
+  dropWhileIdea (arr, predicate) {
+    for (let i = 0; i < arr.length; i++) {
+      if (!(predicate(arr[i], i, arr))) {
+        const droppedArr = arr.slice(i + 1)
+        return droppedArr
+      }
+    }
+    return arr
+  },
+  // Implement .dropWhile() [CodeCademy solution]:
+  // node test/dropWhile.js Passed
+  dropWhile (array, predicate) {
+    const callBack = (element, index) => {
+      return !predicate(element, index, array)
+    }
+    const dropNumber = array.findIndex(callBack)
+    const droppedArray = this.drop(array, dropNumber)
     return droppedArray
   }
 }
@@ -237,6 +261,11 @@ console.log('This call to _.dropIdea should return [2, 3, 4, 5]')
 console.log(_.dropIdea([1, 2, 3, 4, 5]))
 console.log('This call to _.dropIdea should return []')
 console.log(_.dropIdea([1, 2, 3, 4, 5], 5))
+
+// ***********************************************************
+// tests for _.dropIdea() Ideate:
+console.log('This call to _.dropWhileIdea should return [3, 4, 100]')
+console.log(_.dropWhileIdea([1, 2, 2, 3, 4, 100], predicate))
 
 // Do not write or modify code below this line.
 module.exports = _;
